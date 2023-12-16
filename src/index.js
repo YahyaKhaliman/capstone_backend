@@ -20,9 +20,9 @@ app.use(bodyParser.json());
 
 app.use(middlewareLogRequest);
 
-app.use(wisataRoutes);
-
 app.use(userRoutes);
+
+app.use(wisataRoutes);
 
 app.use((err, req, res, next) => {
   res.json({
