@@ -5,7 +5,9 @@ const PORT = process.env.PORT || 5000;
 
 const bodyParser = require("body-parser");
 const wisataRoutes = require("./routes/wisata.js");
+const userRoutes = require("./routes/user.js");
 const middlewareLogRequest = require("./middleware/logs.js");
+const validasiUser = require("./middleware/validasi.js");
 const cors = require("cors");
 const FileUpload = require("express-fileupload");
 
@@ -20,6 +22,10 @@ app.use(bodyParser.json());
 app.use(middlewareLogRequest);
 
 app.use(wisataRoutes);
+
+app.use(userRoutes);
+
+app.use(validasiUser);
 
 app.use((err, req, res, next) => {
   res.json({

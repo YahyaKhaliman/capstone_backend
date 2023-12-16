@@ -247,7 +247,6 @@ const createWisata = async (req, res) => {
     ]);
 
     await WisataModel.createWisata({
-      // id: 1,
       nama_wisata: nama_wisata,
       kota: kota,
       provinsi: provinsi,
