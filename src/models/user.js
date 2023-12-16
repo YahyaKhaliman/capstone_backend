@@ -8,9 +8,9 @@ const getAllUser = () => {
 
 const createUser = (body) => {
   try {
-    const { name, last_name, email, password } = body;
-    const sqlQuery = `INSERT INTO user (name, last_name, email, password) VALUES (?, ?, ?, ?)`;
-    const values = [name, last_name, email, password];
+    const { first_name, last_name, email, password } = body;
+    const sqlQuery = `INSERT INTO user (first_name, last_name, email, password) VALUES (?, ?, ?, ?)`;
+    const values = [first_name, last_name, email, password];
 
     return dbPool.execute(sqlQuery, values);
   } catch (error) {

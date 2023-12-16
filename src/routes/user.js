@@ -1,8 +1,9 @@
 const express = require("express");
-const userController = require("../controllers/user.js");
 const router = express.Router();
+const validateLogin = require("../middleware/validasi");
+const loginUser = require("../controllers/user");
 
-router.get("/user/all", userController.getAllUser);
-router.post("/user", userController.createUser);
+// Rute untuk validasi login
+router.post("/login", validateLogin, loginUser);
 
 module.exports = router;

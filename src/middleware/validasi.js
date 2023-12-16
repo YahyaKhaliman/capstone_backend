@@ -1,20 +1,17 @@
-const dbPool = require("../config/database");
+const jwt = require("jsonwebtoken");
 
-const userExists = async (req, res, next) => {
-  try {
-    const { email } = req.body;
-    const sqlQuery = `SELECT * FROM user WHERE email = ?`;
-    const [rows] = await dbPool.execute(sqlQuery, [email]);
+const validateLogin = (req, res, next) => {
+  const { email, password } = req.body;
 
-    if (rows.length === 0) {
-      return res.status(404).json({ error: "Pengguna tidak ditemukan" });
-    }
-
-    req.user = rows[0];
+  if (email === body.email && password === body.password) {
+    req.body = {
+      email: email,
+      password: password,
+    };
     next();
-  } catch (error) {
-    res.status(500).json({ error: error.message });
+  } else {
+    res.status(401).json({ error: "Login failed" });
   }
 };
 
-module.exports = { userExists };
+module.exports = validateLogin;
