@@ -1,8 +1,8 @@
-const jwt = require("jsonwebtoken");
+const crypto = require("crypto");
 const dbPool = require("../config/database");
 
-const generateToken = (user) => {
-  return jwt.sign({ email: user.email }, "secret_key", { expiresIn: "1h" });
+const generateToken = () => {
+  return crypto.randomBytes(20).toString("hex");
 };
 
 const loginUser = async (req, res) => {
@@ -11,7 +11,7 @@ const loginUser = async (req, res) => {
 
     const token = generateToken(user);
 
-    res.status(200).json({ token: token });
+    res.status(200).json({ message: "Login Berhasil", token: token });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
